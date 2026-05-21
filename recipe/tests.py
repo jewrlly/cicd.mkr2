@@ -21,3 +21,7 @@ class MainViewTest(TestCase):
     def test_main_returns_200(self):
         response = self.client.get(reverse('main'))
         self.assertEqual(response.status_code, 200)
+
+    def test_main_uses_correct_template(self):
+        response = self.client.get(reverse('main'))
+        self.assertTemplateUsed(response, 'main.html')
