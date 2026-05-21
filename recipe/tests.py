@@ -29,3 +29,16 @@ class MainViewTest(TestCase):
     def test_main_returns_max_10_recipes(self):
         response = self.client.get(reverse('main'))
         self.assertLessEqual(len(response.context['recipes']), 10)
+
+class CategoryDetailViewTest(TestCase):
+
+    def setUp(self):
+        self.client = Client()
+        self.category = Category.objects.create(name="Soups")
+        self.recipe = Recipe.objects.create(
+            title="Borsch",
+            description="Ukrainian soup",
+            instructions="Cook it",
+            ingredients="Beets, cabbage",
+            category=self.category
+        )
