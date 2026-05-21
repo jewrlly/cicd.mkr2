@@ -17,3 +17,7 @@ class MainViewTest(TestCase):
                 ingredients=f"Ingredients {i}",
                 category=self.category
             )
+
+    def test_main_returns_200(self):
+        response = self.client.get(reverse('main'))
+        self.assertEqual(response.status_code, 200)
