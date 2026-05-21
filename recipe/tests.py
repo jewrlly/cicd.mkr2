@@ -60,3 +60,9 @@ class CategoryDetailViewTest(TestCase):
             reverse('category_detail', kwargs={'pk': 9999})
         )
         self.assertEqual(response.status_code, 404)
+
+    def test_category_detail_contains_recipe(self):
+        response = self.client.get(
+            reverse('category_detail', kwargs={'pk': self.category.pk})
+        )
+        self.assertContains(response, "Borsch")
