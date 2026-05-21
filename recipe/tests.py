@@ -25,3 +25,7 @@ class MainViewTest(TestCase):
     def test_main_uses_correct_template(self):
         response = self.client.get(reverse('main'))
         self.assertTemplateUsed(response, 'main.html')
+
+    def test_main_returns_max_10_recipes(self):
+        response = self.client.get(reverse('main'))
+        self.assertLessEqual(len(response.context['recipes']), 10)
