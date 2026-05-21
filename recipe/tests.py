@@ -48,3 +48,9 @@ class CategoryDetailViewTest(TestCase):
             reverse('category_detail', kwargs={'pk': self.category.pk})
         )
         self.assertEqual(response.status_code, 200)
+
+    def test_category_detail_uses_correct_template(self):
+        response = self.client.get(
+            reverse('category_detail', kwargs={'pk': self.category.pk})
+        )
+        self.assertTemplateUsed(response, 'category_detail.html')
