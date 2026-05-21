@@ -42,3 +42,9 @@ class CategoryDetailViewTest(TestCase):
             ingredients="Beets, cabbage",
             category=self.category
         )
+
+    def test_category_detail_returns_200(self):
+        response = self.client.get(
+            reverse('category_detail', kwargs={'pk': self.category.pk})
+        )
+        self.assertEqual(response.status_code, 200)
